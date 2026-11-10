@@ -158,7 +158,7 @@ fun DrawScope.drawEffect(effect: Effect, textMeasurer: TextMeasurer) {
                 alpha = fade,
                 style = Stroke(width = 3.dp.toPx()),
             )
-            drawFloatingText(textMeasurer, "Verpasst!", center, p, GameColors.Danger, 20.sp)
+            drawFloatingText(textMeasurer, "Verpasst!", center + Offset(0f, -r * 1.6f), p, GameColors.Danger, 20.sp)
         }
 
         EffectKind.EMPTY_TAP -> drawCircle(

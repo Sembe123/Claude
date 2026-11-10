@@ -78,21 +78,6 @@ jobs:
           name: Screenshots
           path: smoke-test/
 
-      - name: Screenshots verkleinert ins Log schreiben
-        if: always()
-        run: |
-          pip install --quiet pillow
-          python3 - <<'PY'
-          import base64, glob, io
-          from PIL import Image
-          for path in sorted(glob.glob("smoke-test/*.png")):
-              img = Image.open(path).convert("RGB")
-              img.thumbnail((480, 1100))
-              buf = io.BytesIO()
-              img.save(buf, "JPEG", quality=70)
-              print("SCREENSHOT", path, base64.b64encode(buf.getvalue()).decode())
-          PY
-
   release:
     name: Release veröffentlichen
     if: startsWith(github.ref, 'refs/tags/v')
